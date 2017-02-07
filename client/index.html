@@ -3,17 +3,59 @@
   <head>
     <meta charset="utf-8">
     <script src="https://aframe.io/releases/0.4.0/aframe.min.js"></script>
+     <script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
     <title>BoulderBoss</title>
   </head>
   <body>
     <a-scene>
+      <a-assets>
+        <img id="skyTexture"
+        src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+      </a-assets>
       <a-plane
-        src="https://i.imgur.com/mYmmbrp.jpg"
-        position="0 0 -2"
-        height="3"
-        width="1">
-      </a-plane>
-      <a-plane color="tan" height="100" width="100" rotation="-90 0 0"></a-plane>
+       src="patagonia.jpg"
+       position="0 2.5 -6"
+       height="4"
+       width="5">
+     </a-plane>
+     <a-plane
+      src="yosemite.jpg"
+      position="-5.5 2.5 -4"
+      rotation="0 40 0"
+      height="4"
+      width="5">
+    </a-plane>
+    <a-plane
+     src="joshuatree.jpg"
+     position="5.5 2.5 -4"
+     rotation="0 -40 0"
+     height="4"
+     width="5">
+    </a-plane>
+    <a-entity
+      bmfont-text="text: BoulderBoss; color: white"
+      position="-2.5 5.5 -6.5"
+      scale="5 5 5">
+    </a-entity>
+    <a-entity
+      bmfont-text="text: Patagonia!; color: white"
+      position="-1 1.2 -2.5"
+      scale="1 1 1">
+    </a-entity>
+    <a-entity
+      bmfont-text="text: Yosemite!; color: white"
+      position="-6 .8 -2"
+      rotation="0 40 0"
+      scale="1.7 1.7 1.7">
+    </a-entity>
+    <a-entity
+      bmfont-text="text: Joshua Tree!; color: white"
+      position="3.6 .7 -5.5"
+      rotation="0 -40 0"
+      scale="1.7 1.7 1.7">
+    </a-entity>
+    <a-plane color="tan" height="100" width="100" rotation="-90 0 0"></a-plane>
+    <a-sky src="#skyTexture"></a-sky>
     </a-scene>
     <script src="bundle.js"></script>
   </body>
