@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/thienmdoan/BoulderBoss#readme",
   "dependencies": {
+    "body-parser": "^1.16.0",
     "express": "^4.14.1"
   },
   "devDependencies": {
