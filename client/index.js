@@ -33,14 +33,14 @@ const renderThreeD = () => {
   entityControl.setAttribute('look-controls');
   entityControl.setAttribute('wasd-controls');
 
-  var plane1 = document.createElement('a-plane');
+  var plane1 = document.createElement('a-image');
   plane1.setAttribute('src', 'patagonia.jpg');
   plane1.setAttribute('position', '0 2.5 -6');
   plane1.setAttribute('height','4');
   plane1.setAttribute('width', '5');
   plane1.setAttribute('id', 'patagonia');
 
-  var plane2 = document.createElement('a-plane');
+  var plane2 = document.createElement('a-image');
   plane2.setAttribute('src', 'yosemite.jpg');
   plane2.setAttribute('position', '-5.5 2.5 -4');
   plane2.setAttribute('height','4');
@@ -48,7 +48,7 @@ const renderThreeD = () => {
   plane2.setAttribute('rotation', '0 40 0');
   plane2.setAttribute('id', 'yosemite');
 
-  var plane3 = document.createElement('a-plane');
+  var plane3 = document.createElement('a-image');
   plane3.setAttribute('src', 'joshuatree.jpg');
   plane3.setAttribute('position', '5.5 2.5 -4');
   plane3.setAttribute('height','4');
@@ -101,21 +101,55 @@ const openWeatherQuery = (city) => {
  weather = fetch(`/weather/${event.target.id}`)
  weather
   .then((result) => result.json())
-  .then((result) => console.log(result))
+  .then((result) => showWeather(result))
+  //.then((result) => console.log(result))
   .catch((error) => console.error(error))
 }
-/*
-var showWeather(results) => {
+
+var showWeather = (result) => {
   var sceneEl = document.getElementById('scene');
 
-  var obj = results;
-  var $clouds = document.createElement('a-entity');
-  var $temp = document.createElement('a-entity');
-  var $humid = document.createElement('a-entity');
+  var obj = JSON.parse(result);
+  //console.log(obj.weather[0].main);
+//  var $temp = document.createElement('a-entity');
+//  var $humid = document.createElement('a-entity');
+  var weather;
+  var cloud;
+  if(obj.weather[0].main == 'Cloud'){
+    weather = document.createElement('a-collada-model');
+    weather.setAttribute('position', '-1 2.5 0');
+    weather.setAttribute('src', '#cloud');
+    weather.setAttribute('id', 'cloud');
+  }
+  else if(obj.weather[0].main == "Clear") {
+    cloud = document.createElement('a-collada-model');
+    cloud.setAttribute('position', '1.5 -1.5 1.5');
+    cloud.setAttribute('src', '#cloud');
+    cloud.setAttribute('class', 'sun');
+    weather = document.createElement('a-sphere');
+    weather.setAttribute('color', 'yellow');
+    weather.setAttribute('radius', '2');
+    weather.setAttribute('position', '0 4.5 -2.5');
+    weather.setAttribute('class', 'sun');
+  }
+  weather.appendChild(cloud);
+  sceneEl.appendChild(weather);
 
-//  if (obj.weather.main === 'Clouds') {
-//
-//  }
+  return sceneEl;
 
-}
-*/
+};
+
+document.body.addEventListener('click', () => {
+  var cloud = document.getElementsByClassName('cloud');
+  var sun = document.getElementsByClassName('sun');
+  if(event.target.className == 'sun'){
+    while(sun.length > 0){
+      sun[0].parentNode.removeChild(sun[0]);
+      }
+    }
+  if(event.target.className == 'cloud'){
+    while(cloud.length > 0){
+      cloud[0].parentNode.removeChild(cloud[0]);
+      }
+    }
+}, false);

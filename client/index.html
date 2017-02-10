@@ -15,9 +15,9 @@
   <body>
     <a-scene id="scene">
 
-      <a-camera position="-1 0 0">
-        <a-cursor color="white"></a-cursor>
-     </a-camera>
+      <a-camera id="camera" position="0 0 2">
+        <a-cursor fuse="true" fusetimeout="2000" color="white"></a-cursor>
+      </a-camera>
 
       <a-assets>
         <video id="video" loop="true" src="PATAGONIA.mp4" webkit-playsinline/>
@@ -59,6 +59,7 @@
         rotation="0 -40 0"
         scale="1.7 1.7 1.7">
       </a-entity>
+
 <!--
         <a-box color="black" position="0 2 -5" rotation="0 45 45" scale="2 2 2">
           <a-animation attribute="position" to="0 2.2 -5" direction="alternate" dur="2000"
