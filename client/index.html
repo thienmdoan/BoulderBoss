@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.2/fetch.min.js"></script>
     <script src="https://aframe.io/releases/0.4.0/aframe.min.js"></script>
     <script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
     <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
@@ -16,6 +17,7 @@
     <a-scene id="scene">
 
       <a-camera id="camera" position="0 0 2">
+        <!--fuse="true" fusetimeout="2000"-->
         <a-cursor fuse="true" fusetimeout="2000" color="white"></a-cursor>
       </a-camera>
 
