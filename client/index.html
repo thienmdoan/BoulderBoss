@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta git charset="utf-8">
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.2/fetch.min.js"></script>
-    <script src="https://aframe.io/releases/0.4.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
     <script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
     <script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
     <title>BoulderBoss</title>
   </head>
   <body>
     <a-scene id="scene">
-      <a-camera id="camera" position="0 1 4"
-      rotation="11 0 0">
-        <!--fuse="true" fusetimeout="2000"-->
+     <a-camera id="camera" position="0 1 4">
+        <!--   fuse="true" fusetimeout="2000"-->
         <a-cursor color="white"></a-cursor>
       </a-camera>
 
@@ -26,52 +25,51 @@
       </a-assets>
 
       <a-entity
-        bmfont-text="text: Welcome!; color: white"
+        text="value: Welcome!; color: white"
         class="weather"
         position="-2.45 5.5 -6.5"
-        scale="5 5 5">
+        align="center"
+        scale="10 10 10">
        <a-animation attribute="rotation" begin="1000" repeat="0" to="360 0 0"></a-animation>
       </a-entity>
 
       <a-entity
-        bmfont-text="text: BoulderBoss; color: white"
+        text="value: BoulderBoss; color: white"
         class="weather"
         position="-2.45 6.5 -5.5"
-        scale="5 5 5">
+        align="center"
+        scale="10 10 10">
         <a-animation attribute="rotation" begin="click" repeat="0" to="360 0 0"></a-animation>
       </a-entity>
 
       <a-entity
-        bmfont-text="text: Patagonia; color: white"
-        position="-1 1.2 -2.5"
-        scale="2 2 2">
+        text="value: Patagonia; color: white"
+        position="3 1.2 -4.5"
+        align="center"
+        scale="10 10 10">
       </a-entity>
 
       <a-entity
-        bmfont-text="text: Yosemite; color: white"
-        position="-6 .8 -2"
+        text="value: Yosemite; color: white"
+        position="-3.25 1 --5.25"
         rotation="0 40 0"
-        scale="1.7 1.7 1.7">
+        align="center"
+        scale="10 10 10">
       </a-entity>
 
       <a-entity
-        bmfont-text="text: Joshua Tree; color: white"
-        position="3.6 1 -3.5"
+        text="value: Joshua Tree; color: white"
+        position="7.25 1 -1.5"
         rotation="0 -40 0"
-        scale="1.7 1.7 1.7">
+        align="center"
+        scale="10 10 10">
       </a-entity>
 
-<!--
-        <a-box color="black" position="0 2 -5" rotation="0 45 45" scale="2 2 2">
-          <a-animation attribute="position" to="0 2.2 -5" direction="alternate" dur="2000"
-          repeat="indefinite"></a-animation>
-        </a-box>
-      -->
       <a-sphere position="-4 15 27" scale="15 25 15" color="gray"></a-sphere>
       <a-box position="3.29 1 19" scale="10 2 10" color="gray"></a-box>
       <a-dodecahedron position="10 2 4" scale= "1 1 1" color="gray" radius="5"></a-dodecahedron>
 
-      <a-sound src="bgsound.mp3" autoplay="true"></a-sound>
+      <!--<a-sound src="bgsound.mp3" autoplay="true"></a-sound>-->
 
       <a-collada-model src="#tree" position="10 0 -5"></a-collada-model>
       <a-collada-model src="#tree" position="-15 0 10"></a-collada-model>

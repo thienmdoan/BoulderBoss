@@ -108,13 +108,13 @@ document.body.addEventListener('mousedown', function() {
 }, false);
 
 function openWeatherQuery(city) {
- const weather = fetch(`/weather/${event.target.id}`)
+ const weather = fetch(`/weather/${event.target.id}`);
  weather
   .then((result) => result.json())
   .then((result) => showWeather(result))
   //USE CONSOLE LOG TO CHECK THE DATA
   //.then((result) => console.log(result))
-  .catch((error) => console.error(error))
+  .catch((error) => console.error(error));
 }
 
 
