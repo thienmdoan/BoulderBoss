@@ -1,18 +1,3 @@
-/*
-var entity = document.querySelector('a-entity')
-
-entity.addEventListener('mouseenter', function() {
-  entity.setAttribute( 'scale',
-  {
-    x: 0.05,
-    y: 2,
-    z: 5.9
-  });
-});
-
-var num = Math.floor(Math.random() * 20);
-*/
-
 function renderThreeD() {
   var $sceneEl = document.getElementById('scene');
   var $entityEl = document.createElement('a-plane');
@@ -170,19 +155,7 @@ function showWeather(result) {
     $cloud.setAttribute('class', 'weather');
     $weather.appendChild($cloud);
   }
-/*
-  if(obj.weather[0].main == "Rain" || "Clear" || "Clouds"){
-    $weather = document.createElement('a-collada-model');
-    $weather.setAttribute('position', '0 3 -2.5');
-    $weather.setAttribute('src', '#water');
-    $weather.setAttribute('class', 'weather');
-    $cloud = document.createElement('a-collada-model');
-    $cloud.setAttribute('position', '1.5 1 -1');
-    $cloud.setAttribute('src', '#cloud');
-    $cloud.setAttribute('class', 'weather');
-    $weather.appendChild($cloud);
-  }
-*/
+
   var $animation = document.createElement('a-animation');
   $animation.setAttribute('attribute', 'position');
   $animation.setAttribute('direction', 'alternate');
