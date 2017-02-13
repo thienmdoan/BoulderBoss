@@ -1,3 +1,4 @@
+/*
 var entity = document.querySelector('a-entity')
 
 entity.addEventListener('mouseenter', function() {
@@ -10,7 +11,7 @@ entity.addEventListener('mouseenter', function() {
 });
 
 var num = Math.floor(Math.random() * 20);
-
+*/
 
 function renderThreeD() {
   var $sceneEl = document.getElementById('scene');
@@ -77,11 +78,12 @@ function renderThreeD() {
   $entityControl.appendChild($plane3);
 
   return $sceneEl;
-};
+}
 
 renderThreeD();
 
-document.body.addEventListener('click',function() {
+document.body.addEventListener('mousedown', function() {
+  event.preventDefault();
   if (event.target.id === 'patagonia') {
     openWeatherQuery('patagonia');
   }
@@ -91,9 +93,14 @@ document.body.addEventListener('click',function() {
   else if (event.target.id === 'yosemite') {
     openWeatherQuery('yosemite');
   }
+
+}, false);
+
+document.body.addEventListener('mousedown', function() {
+
   var cloud = document.getElementsByClassName('cloud');
   var weather = document.getElementsByClassName('weather');
-  if(event.target.className == 'weather' || 'location'){
+  if(event.target.className == 'location'){
     while(weather.length > 0){
       weather[0].parentNode.removeChild(weather[0]);
       }
@@ -101,10 +108,11 @@ document.body.addEventListener('click',function() {
 }, false);
 
 function openWeatherQuery(city) {
- weather = fetch(`/weather/${event.target.id}`)
+ const weather = fetch(`/weather/${event.target.id}`)
  weather
   .then((result) => result.json())
   .then((result) => showWeather(result))
+  //USE CONSOLE LOG TO CHECK THE DATA
   //.then((result) => console.log(result))
   .catch((error) => console.error(error))
 }
@@ -114,13 +122,14 @@ function showWeather(result) {
   var $sceneEl = document.getElementById('scene');
 
   var obj = JSON.parse(result);
+  //USE CONSOLE LOG TO CHECK IF THE DATA IS COMING THROUGH
   //console.log(obj.weather[0].main);
   var $weather;
-  var $$cloud;
+  var $cloud;
   var tempNum = (obj.main.temp).toFixed(0);
   var $temp = document.createElement('a-entity');
   $temp.setAttribute('bmfont-text', `text: ${tempNum} Degrees; color: white`);
-  $temp.setAttribute('position', '-1 6.5 0');
+  $temp.setAttribute('position', '-1 5.5 0');
   $temp.setAttribute('scale', '3 3 3');
   $temp.setAttribute('class', 'weather');
 
@@ -138,9 +147,9 @@ function showWeather(result) {
   $wind.setAttribute('scale', '1 1 1');
   $wind.setAttribute('class', 'weather');
 
-  if(obj.weather[0].main == "Clouds"){
+  if(obj.weather[0].main == "Clouds" || "Rain"){
     $weather = document.createElement('a-collada-model');
-    $weather.setAttribute('position', '0 4 -2.5');
+    $weather.setAttribute('position', '0 3 -2.5');
     $weather.setAttribute('src', '#cloud');
     $weather.setAttribute('class', 'weather');
     $cloud = document.createElement('a-collada-model');
@@ -153,7 +162,7 @@ function showWeather(result) {
     $weather = document.createElement('a-sphere');
     $weather.setAttribute('color', 'yellow');
     $weather.setAttribute('radius', '2');
-    $weather.setAttribute('position', '0 4.5 -2.5');
+    $weather.setAttribute('position', '0 3.5 -2.5');
     $weather.setAttribute('class', 'weather');
     $cloud = document.createElement('a-collada-model');
     $cloud.setAttribute('position', '1.5 -1.5 1.5');
@@ -161,15 +170,25 @@ function showWeather(result) {
     $cloud.setAttribute('class', 'weather');
     $weather.appendChild($cloud);
   }
+/*
+  if(obj.weather[0].main == "Rain" || "Clear" || "Clouds"){
+    $weather = document.createElement('a-collada-model');
+    $weather.setAttribute('position', '0 3 -2.5');
+    $weather.setAttribute('src', '#water');
+    $weather.setAttribute('class', 'weather');
+    $cloud = document.createElement('a-collada-model');
+    $cloud.setAttribute('position', '1.5 1 -1');
+    $cloud.setAttribute('src', '#cloud');
+    $cloud.setAttribute('class', 'weather');
+    $weather.appendChild($cloud);
+  }
+*/
   var $animation = document.createElement('a-animation');
   $animation.setAttribute('attribute', 'position');
   $animation.setAttribute('direction', 'alternate');
   $animation.setAttribute('to','0 3.7 -2.5');
   $animation.setAttribute('dur', '2000');
   $animation.setAttribute('repeat', 'indefinite');
-
-  //<a-animation attribute="position" to="0 2.2 -5" direction="alternate" dur="2000"
-  //repeat="indefinite"></a-animation>
 
   $sceneEl.appendChild($weather);
   $sceneEl.appendChild($temp);
@@ -178,4 +197,4 @@ function showWeather(result) {
   $humidity.appendChild($wind);
   return $sceneEl;
 
-};
+}

@@ -6,23 +6,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.2/fetch.min.js"></script>
     <script src="https://aframe.io/releases/0.4.0/aframe.min.js"></script>
     <script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
-    <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
-    <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
-    <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
-    <script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
     <script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
     <title>BoulderBoss</title>
   </head>
   <body>
     <a-scene id="scene">
-
-      <a-camera id="camera" position="0 0 2">
+      <a-camera id="camera" position="0 1 4"
+      rotation="11 0 0">
         <!--fuse="true" fusetimeout="2000"-->
-        <a-cursor fuse="true" fusetimeout="2000" color="white"></a-cursor>
+        <a-cursor color="white"></a-cursor>
       </a-camera>
 
       <a-assets>
         <video id="video" loop="true" src="PATAGONIA.mp4" webkit-playsinline/>
+        <a-assets-item id="water" src="water.DAE"></a-assets-item>
         <a-assets-item id="skyTexture" src="sky.jpg"></a-assets-item>
         <a-assets-item id="tree" src="/LowPolyTree/tree.dae"></a-assets-item>
         <a-assets-item id="cloud" src="Cloud_2.dae"></a-assets-item>
@@ -30,6 +27,7 @@
 
       <a-entity
         bmfont-text="text: Welcome!; color: white"
+        class="weather"
         position="-2.45 5.5 -6.5"
         scale="5 5 5">
        <a-animation attribute="rotation" begin="1000" repeat="0" to="360 0 0"></a-animation>
@@ -37,7 +35,8 @@
 
       <a-entity
         bmfont-text="text: BoulderBoss; color: white"
-        position="-2.45 5.5 -5.5"
+        class="weather"
+        position="-2.45 6.5 -5.5"
         scale="5 5 5">
         <a-animation attribute="rotation" begin="click" repeat="0" to="360 0 0"></a-animation>
       </a-entity>
@@ -45,7 +44,7 @@
       <a-entity
         bmfont-text="text: Patagonia; color: white"
         position="-1 1.2 -2.5"
-        scale="1 1 1">
+        scale="2 2 2">
       </a-entity>
 
       <a-entity
