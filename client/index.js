@@ -210,12 +210,12 @@ function showWeather(result) {
 
 const sphere = document.getElementById('sphere');
 
-sphere.addEventListener('mousedown', () => {
-  console.log(event.target);
+sphere.addEventListener('mousedown', function () {
+  console.log(event.target.getAttribute());
 /*  document.getElementById('camera');
   if(event.target.id == "sphere") {
     var position = JSON.stringify(sphere.position);
     console.log(position);
     //camera.setAttribute('position', sphere.position);
-  }*/
+*/
 });
