@@ -1,21 +1,7 @@
-/*
-var entity = document.querySelector('a-entity')
-
-entity.addEventListener('mouseenter', function() {
-  entity.setAttribute( 'scale',
-  {
-    x: 0.05,
-    y: 2,
-    z: 5.9
-  });
-});
-
-var num = Math.floor(Math.random() * 20);
-*/
-
 function renderThreeD() {
   var $sceneEl = document.getElementById('scene');
   var $entityEl = document.createElement('a-plane');
+  $entityEl.setAttribute('id', 'platform')
   $entityEl.setAttribute('color', 'tan');
   $entityEl.setAttribute('height', '100');
   $entityEl.setAttribute('width', '100');
@@ -65,14 +51,30 @@ function renderThreeD() {
 
   var $animation = document.createElement('a-animation');
   $animation.setAttribute('attribute', 'rotation');
-  $animation.setAttribute('begin', 'click');
+  $animation.setAttribute('delay', '2000');
   $animation.setAttribute('to','360 0 0');
+
+  var $boss = document.createElement('a-entity');
+  $boss.setAttribute('text', `value: BoulderBoss; color: white`);
+  $boss.setAttribute('class', 'weather');
+  $boss.setAttribute('position', '5.5 6.5 -6.5');
+  $boss.setAttribute('align', 'center');
+  $boss.setAttribute('scale', '15 15 15');
+
+  var $welcome = document.createElement('a-entity');
+  $welcome.setAttribute('text', `value: Welcome!; color: white`);
+  $welcome.setAttribute('class', 'weather');
+  $welcome.setAttribute('position', '0 -0.05 0');
+  $welcome.setAttribute('scale', '.9 .9 .9');
+
 
   $sceneEl.appendChild($entityEl);
   $sceneEl.appendChild($sky);
   //$sceneEl.appendChild($entityVid);
   $sceneEl.appendChild($entityControl);
-
+  $sceneEl.appendChild($boss);
+  $boss.appendChild($welcome);
+  $welcome.appendChild($animation);
   $entityControl.appendChild($plane1);
   $entityControl.appendChild($plane2);
   $entityControl.appendChild($plane3);
@@ -128,26 +130,29 @@ function showWeather(result) {
   var $cloud;
   var tempNum = (obj.main.temp).toFixed(0);
   var $temp = document.createElement('a-entity');
-  $temp.setAttribute('bmfont-text', `text: ${tempNum} Degrees; color: white`);
-  $temp.setAttribute('position', '-1 5.5 0');
-  $temp.setAttribute('scale', '3 3 3');
+  $temp.setAttribute('text', `value: ${tempNum} Degrees; color: white`);
+  $temp.setAttribute('position', '4 5.8 0');
+  $temp.setAttribute('align', 'center');
+  $temp.setAttribute('scale', '10 10 10');
   $temp.setAttribute('class', 'weather');
 
   var humidNum = (obj.main.humidity).toFixed(0);
   var $humidity = document.createElement('a-entity');
-  $humidity.setAttribute('bmfont-text', `text: humidity ${humidNum}%; color: white`);
-  $humidity.setAttribute('position', '0 -.2 0');
+  $humidity.setAttribute('text', `value: humidity ${humidNum}%; color: white`);
+  $humidity.setAttribute('position', '0 -.05 0');
+  $humidity.setAttribute('align', 'center');
   $humidity.setAttribute('scale', '1 1 1');
   $humidity.setAttribute('class', 'weather');
 
   var windNum = (obj.wind.speed).toFixed(0);
   var $wind = document.createElement('a-entity');
-  $wind.setAttribute('bmfont-text', `text: wind ${windNum}mph; color: #9e9e9a`);
-  $wind.setAttribute('position', '0 -.2 0');
+  $wind.setAttribute('text', `value: wind ${windNum}mph; color: #9e9e9a`);
+  $wind.setAttribute('position', '0 -.05 0');
+  $wind.setAttribute('align', 'center');
   $wind.setAttribute('scale', '1 1 1');
   $wind.setAttribute('class', 'weather');
 
-  if(obj.weather[0].main == "Clouds" || "Rain"){
+  if(obj.weather[0].main == "Clouds"){
     $weather = document.createElement('a-collada-model');
     $weather.setAttribute('position', '0 3 -2.5');
     $weather.setAttribute('src', '#cloud');
@@ -170,19 +175,23 @@ function showWeather(result) {
     $cloud.setAttribute('class', 'weather');
     $weather.appendChild($cloud);
   }
-/*
-  if(obj.weather[0].main == "Rain" || "Clear" || "Clouds"){
-    $weather = document.createElement('a-collada-model');
-    $weather.setAttribute('position', '0 3 -2.5');
-    $weather.setAttribute('src', '#water');
+  else if(obj.weather[0].main == "Rain"){
+    $weather = document.createElement('a-entity');
+    $weather.setAttribute('position', '0 2.5 -2.5');
+    $weather.setAttribute('rotation', '0 0 0');
+    $weather.setAttribute('scale', '.2 .2 .2');
+    $weather.setAttribute('ply-model', `src: #rain`);
     $weather.setAttribute('class', 'weather');
+
+    //<a-entity ply-model="src: #rain" position="-4 10 3" rotation="0 0 0" scale=".2 .2 .2"></a-entity>
     $cloud = document.createElement('a-collada-model');
-    $cloud.setAttribute('position', '1.5 1 -1');
+    $cloud.setAttribute('position', '0 6.3 6.8');
+    $cloud.setAttribute('scale', '3.5 3.5 3.5');
     $cloud.setAttribute('src', '#cloud');
     $cloud.setAttribute('class', 'weather');
     $weather.appendChild($cloud);
   }
-*/
+
   var $animation = document.createElement('a-animation');
   $animation.setAttribute('attribute', 'position');
   $animation.setAttribute('direction', 'alternate');
@@ -198,3 +207,15 @@ function showWeather(result) {
   return $sceneEl;
 
 }
+
+const sphere = document.getElementById('sphere');
+
+sphere.addEventListener('mousedown', () => {
+  console.log(event.target);
+/*  document.getElementById('camera');
+  if(event.target.id == "sphere") {
+    var position = JSON.stringify(sphere.position);
+    console.log(position);
+    //camera.setAttribute('position', sphere.position);
+  }*/
+});
