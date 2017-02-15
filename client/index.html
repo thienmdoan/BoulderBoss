@@ -8,16 +8,79 @@
     <script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
     <script src="https://cdn.rawgit.com/jujunjun110/aframe-crawling-cursor/master/dist/aframe-crawling-cursor.min.js"></script>
     <script src="https://rawgit.com/donmccurdy/aframe-extras/v2.1.1/dist/aframe-extras.loaders.min.js"></script>
+    <script type="text/javascript">
+
+  function updateCamera($camera, $dest) {
+    const step = 0.04
+    const dest = $dest.getAttribute('position')
+    let pos = $camera.getAttribute('position')
+
+      let xSteps = (dest.x - pos.x)
+      let zSteps = (dest.z - pos.z)
+
+    const interval = setInterval(function () {
+      //if (pos.x >= dest.x && pos.z >= dest.z) {
+      if (xSteps === 0 && zSteps === 0) {
+        return clearInterval(interval)
+      }
+      else if(dest.x >= 0 && dest.z >= 0) {
+    //    xSteps -= step
+    //    zSteps -= step
+        Object.assign(pos, {
+          x: pos.x += step,
+          z: pos.z += step
+        })
+        $camera.setAttribute('position', pos)
+      }
+      else if(dest.x <= 0 && dest.z >= 0) {
+        Object.assign(pos, {
+          x: pos.x -= step,
+          z: pos.z += step
+        })
+        $camera.setAttribute('position', pos)
+      }
+
+      else if(dest.x >= 0 && dest.z <= 0) {
+        Object.assign(pos, {
+          x: pos.x += step,
+          z: pos.z -= step
+        })
+        $camera.setAttribute('position', pos)
+      }
+
+      else if(dest.x <= 0 && dest.z <= 0) {
+        Object.assign(pos, {
+          x: pos.x -= step,
+          z: pos.z -= step
+        })
+        $camera.setAttribute('position', pos)
+      }
+    }, 16)
+  }
+
+  AFRAME.registerComponent('cursor-listener', {
+    init: function() {
+      this.el.addEventListener('mousedown', event => {
+        const $camera = document.getElementById('camera')
+        const cam = $camera.getAttribute('position')
+        const to = event.target.getAttribute('position')
+        console.log('camera', cam)
+        console.log('destination', to)
+        updateCamera($camera, event.target)
+      })
+    }
+  })
+</script>
     <title>BoulderBoss</title>
   </head>
   <body>
     <a-scene id="scene">
-      <a-cursor color="white" scale="1 1 1"></a-cursor>
-      <a-camera raycaster="far: 30" crawling-cursor id="camera" position="0 1 4" rotation="11 0 0">
-        <a-cursor color="white"></a-cursor>
-      <!--   fuse="true" fusetimeout="2000"-->
-      <!--<a-cursor color="white" scale="2 2 2"></a-cursor>-->
-      </a-camera>
+      <a-entity position="0 1 4">
+        <a-camera id="camera" rotation="11 0 0">
+          <a-cursor color="white"></a-cursor>
+        <!--   fuse="true" fusetimeout="2000"-->
+        </a-camera>
+      </a-entity>
 
       <a-assets>
         <video id="video" loop="true" src="PATAGONIA.mp4" webkit-playsinline/>
@@ -54,16 +117,16 @@
 
       <a-entity ply-model="src: #mountain" position="-4 0 42" rotation="-90 180 0"></a-entity>
       <a-light position="-19 24 7.5"></a-light>
-      <a-light position="-49 54 10"></a-light>
-      <a-sphere id="sphere" radius="1" position="12 6 15" color="red"></a-sphere>
-      <a-dodecahedron position="10 2 4" scale= "1 1 1" color="gray" radius="5"></a-dodecahedron>
+      <a-light position="-5 .5 -26" intensity="0.5"></a-light>
+      <a-sphere id="sphere" cursor-listener radius="1" position="12 6 15" color="red"></a-sphere>
+      <a-dodecahedron cursor-listener position="10 2 4" scale= "1 1 1" color="gray" radius="5"></a-dodecahedron>
 
       <!--<a-sound src="bgsound.mp3" autoplay="true"></a-sound>-->
 
-      <a-collada-model src="#tree" position="10 0 -5"></a-collada-model>
-      <a-collada-model src="#tree" position="-15 0 10"></a-collada-model>
-      <a-collada-model src="#tree" position="10 0 10"></a-collada-model>
-      <a-collada-model src="#tree" position="-10 0 2wd"></a-collada-model>
+      <a-collada-model cursor-listener src="#tree" position="10 0 -5"></a-collada-model>
+      <a-collada-model cursor-listener src="#tree" position="-15 0 10"></a-collada-model>
+      <a-collada-model cursor-listener src="#tree" position="10 0 10"></a-collada-model>
+      <a-collada-model cursor-listener src="#tree" position="-10 0 2"></a-collada-model>
 
     </a-scene>
     <script src="bundle.js"></script>

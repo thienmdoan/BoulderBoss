@@ -207,7 +207,7 @@ function showWeather(result) {
   return $sceneEl;
 
 }
-
+/*
 const sphere = document.getElementById('sphere');
 
 sphere.addEventListener('mousedown', function () {
@@ -218,4 +218,4 @@ sphere.addEventListener('mousedown', function () {
     console.log(position);
     //camera.setAttribute('position', sphere.position);
 */
-});
+//});
