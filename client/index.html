@@ -8,74 +8,27 @@
     <script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
     <script src="https://cdn.rawgit.com/jujunjun110/aframe-crawling-cursor/master/dist/aframe-crawling-cursor.min.js"></script>
     <script src="https://rawgit.com/donmccurdy/aframe-extras/v2.1.1/dist/aframe-extras.loaders.min.js"></script>
-    <script type="text/javascript">
-
-  function updateCamera($camera, $dest) {
-    const step = 0.04
-    const dest = $dest.getAttribute('position')
-    let pos = $camera.getAttribute('position')
-
-      let xSteps = (dest.x - pos.x)
-      let zSteps = (dest.z - pos.z)
-
-    const interval = setInterval(function () {
-      //if (pos.x >= dest.x && pos.z >= dest.z) {
-      if (xSteps === 0 && zSteps === 0) {
-        return clearInterval(interval)
-      }
-      else if(dest.x >= 0 && dest.z >= 0) {
-    //    xSteps -= step
-    //    zSteps -= step
-        Object.assign(pos, {
-          x: pos.x += step,
-          z: pos.z += step
-        })
-        $camera.setAttribute('position', pos)
-      }
-      else if(dest.x <= 0 && dest.z >= 0) {
-        Object.assign(pos, {
-          x: pos.x -= step,
-          z: pos.z += step
-        })
-        $camera.setAttribute('position', pos)
-      }
-
-      else if(dest.x >= 0 && dest.z <= 0) {
-        Object.assign(pos, {
-          x: pos.x += step,
-          z: pos.z -= step
-        })
-        $camera.setAttribute('position', pos)
-      }
-
-      else if(dest.x <= 0 && dest.z <= 0) {
-        Object.assign(pos, {
-          x: pos.x -= step,
-          z: pos.z -= step
-        })
-        $camera.setAttribute('position', pos)
-      }
-    }, 16)
-  }
+    <!--<script type="text/javascript">
 
   AFRAME.registerComponent('cursor-listener', {
     init: function() {
       this.el.addEventListener('mousedown', event => {
         const $camera = document.getElementById('camera')
-        const cam = $camera.getAttribute('position')
-        const to = event.target.getAttribute('position')
-        console.log('camera', cam)
-        console.log('destination', to)
-        updateCamera($camera, event.target)
+        const cam = $camera.getAttribute('rotation')
+        //const to = event.target.getAttribute('position')
+        console.log('camera', cam.y)
+        //console.log('destination', to)
+        moving(cam)
+        //updateCamera($camera, event.target)
       })
     }
   })
-</script>
+</script> -->
     <title>BoulderBoss</title>
   </head>
   <body>
     <a-scene id="scene">
-      <a-entity position="0 1 4">
+      <a-entity position="0 1 6">
         <a-camera id="camera" rotation="11 0 0">
           <a-cursor color="white"></a-cursor>
         <!--   fuse="true" fusetimeout="2000"-->
@@ -84,23 +37,26 @@
 
       <a-assets>
         <video id="video" loop="true" src="PATAGONIA.mp4" webkit-playsinline/>
-        <a-asset-item id="mountain" src="mountain.ply"></a-asset-item>
-        <a-asset-item id="rain" src="rain.ply"></a-asset-item>
-        <a-asset-item id="skyTexture" src="sky.jpg"></a-asset-item>
-        <a-asset-item id="tree" src="/LowPolyTree/tree.dae"></a-asset-item>
-        <a-asset-item id="cloud" src="Cloud_2.dae"></a-asset-item>
+        <a-asset-item id="patagonia" src="/images/patagonia.jpg"></a-asset-item>
+        <a-asset-item id="joshuatree" src="/images/joshuatree.jpg"></a-asset-item>
+        <a-asset-item id="yosemite" src="/images/yosemite.jpg"></a-asset-item>
+        <a-asset-item id="mountain" src="/images/mountain.ply"></a-asset-item>
+        <a-asset-item id="rain" src="/images/rain.ply"></a-asset-item>
+        <a-asset-item id="skyTexture" src="/images/sky.jpg"></a-asset-item>
+        <a-asset-item id="tree" src="/images/tree.dae"></a-asset-item>
+        <a-asset-item id="cloud" src="/images/Cloud_2.dae"></a-asset-item>
       </a-assets>
 
       <a-entity
         text="value: Patagonia; color: white"
-        position="3 1.2 -4.5"
+        position="3 4 -4.5"
         align="center"
         scale="10 10 10">
       </a-entity>
 
       <a-entity
         text="value: Yosemite; color: white"
-        position="-3.25 1 -5.25"
+        position="-3.25 4 -5.25"
         rotation="0 40 0"
         align="center"
         scale="10 10 10">
@@ -108,7 +64,7 @@
 
       <a-entity
         text="value: Joshua Tree; color: white"
-        position="7.25 1 -1.5"
+        position="7.25 4 -1.5"
         rotation="0 -40 0"
         align="center"
         scale="10 10 10"
