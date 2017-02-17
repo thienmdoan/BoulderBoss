@@ -64,6 +64,17 @@
              z: pos.z += step, y: pos.y})
          $camera.setAttribute('position', pos)
        }, 16)}
-
+    if(cam.y <= 247.1 && cam.y >=202.1){
+      interval = setInterval(function () {
+        Object.assign(pos, {
+          x: pos.x += step, z: pos.z += step, y: pos.y})
+          $camera.setAttribute('position', pos)
+      }, 16)}
+    if(cam.y <= -202.1 && cam.y >=247.1){
+      interval = setInterval(function () {
+        Object.assign(pos, {
+          x: pos.x -= step, z: pos.z -= step, y: pos.y})
+          $camera.setAttribute('position', pos)
+      }, 16)}
     let timeout = setTimeout(function () {clearInterval(interval)}, 1300);
   }
