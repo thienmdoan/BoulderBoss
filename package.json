@@ -7,7 +7,7 @@
   "node": "6.9.2"
 },
   "scripts": {
-    "start": "node .",
+    "start": "node index.js",
     "nodemon": "nodemon",
     "dev": "run-p nodemon watch:js watch:html",
     "watch:js": "watchify -t babelify ./client/index.js -o public/bundle.js",
