@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "App for rock climbers.",
   "main": "index.js",
+  "engines": {
+  "node": "6.9.2"
+},
   "scripts": {
     "start": "node",
     "nodemon": "nodemon",

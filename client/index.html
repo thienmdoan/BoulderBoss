@@ -22,6 +22,7 @@
       <a-assets>
         <video id="video" loop="true" src="PATAGONIA.mp4" webkit-playsinline/>
         <a-asset-item id="character2" src="/images/character2.ply"></a-asset-item>
+        <a-asset-item id="start" src="/images/arrow.ply"></a-asset-item>
         <a-asset-item id="character" src="/images/sprite.ply"></a-asset-item>
         <a-asset-item id="patagonia" src="/images/patagonia.jpg"></a-asset-item>
         <a-asset-item id="joshuatree" src="/images/joshuatree.jpg"></a-asset-item>
@@ -33,15 +34,15 @@
         <a-asset-item id="cloud" src="/images/Cloud_2.dae"></a-asset-item>
       </a-assets>
 
+
       <a-light position="-19 24 7.5"></a-light>
       <a-light position="-5 .5 -26" intensity="0.5"></a-light>
       <a-light type="ambient" intensity="0.5"></a-light>
       <a-sphere id="sphere" cursor-listener radius="1" color="red"
       alongpath="path:2,2,-5 -2,1,-2.5 0,1,-1 12,6,15, 6,9,15 -5,16,15 3,22,15 -14,30,15 1,45,15 1,45.7,37; closed:false; dur:20000; delay:4000 loop:true"></a-sphere>
-
       <a-dodecahedron position="10 2 4" scale= "1 1 1" color="gray" radius="5"></a-dodecahedron>
 
-      <!--<a-sound src="bgsound.mp3" autoplay="true"></a-sound>-->
+      <a-sound src="bgsound.mp3" autoplay="true"></a-sound>
 
       <a-collada-model src="#tree" position="10 0 -5"></a-collada-model>
       <a-collada-model src="#tree" position="-15 0 10"></a-collada-model>
