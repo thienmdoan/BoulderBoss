@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta git charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.2/fetch.min.js"></script>
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
+    <script src="https://cdn.rawgit.com/jujunjun110/aframe-crawling-cursor/master/dist/aframe-crawling-cursor.min.js"></script>
+    <script src="https://rawgit.com/donmccurdy/aframe-extras/v2.1.1/dist/aframe-extras.loaders.min.js"></script>
+
+    <title>BoulderBoss</title>
+  </head>
+  <body>
+    <a-scene id="scene">
+      <a-entity position="0 1 6">
+        <a-camera id="camera" rotation="1 0 0">
+          <a-cursor fuse="true" fusetimeout="2000" color="white"></a-cursor>
+        </a-camera>
+      </a-entity>
+
+      <a-assets>
+        <video id="video" loop="true" src="PATAGONIA.mp4" webkit-playsinline/>
+        <a-asset-item id="character2" src="/images/character2.ply"></a-asset-item>
+        <a-asset-item id="start" src="/images/arrow.ply"></a-asset-item>
+        <a-asset-item id="character" src="/images/sprite.ply"></a-asset-item>
+        <a-asset-item id="patagonia" src="/images/patagonia.jpg"></a-asset-item>
+        <a-asset-item id="joshuatree" src="/images/joshuatree.jpg"></a-asset-item>
+        <a-asset-item id="yosemite" src="/images/yosemite.jpg"></a-asset-item>
+        <a-asset-item id="mountain" src="/images/mountain.ply"></a-asset-item>
+        <a-asset-item id="rain" src="/images/rain.ply"></a-asset-item>
+        <a-asset-item id="skyTexture" src="/images/sky.jpg"></a-asset-item>
+        <a-asset-item id="tree" src="/images/tree.dae"></a-asset-item>
+        <a-asset-item id="cloud" src="/images/Cloud_2.dae"></a-asset-item>
+      </a-assets>
+
+
+      <a-light position="-19 24 7.5"></a-light>
+      <a-light position="-5 .5 -26" intensity="0.5"></a-light>
+      <a-light type="ambient" intensity="0.5"></a-light>
+      <a-sphere id="sphere" cursor-listener radius="1" color="red"
+      alongpath="path:2,2,-5 -2,1,-2.5 0,1,-1 12,6,15, 6,9,15 -5,16,15 3,22,15 -14,30,15 1,45,15 1,45.7,37; closed:false; dur:20000; delay:4000 loop:true"></a-sphere>
+      <a-dodecahedron position="10 2 4" scale= "1 1 1" color="gray" radius="5"></a-dodecahedron>
+
+      <a-sound src="bgsound.mp3" autoplay="true"></a-sound>
+
+      <a-collada-model src="#tree" position="10 0 -5"></a-collada-model>
+      <a-collada-model src="#tree" position="-15 0 10"></a-collada-model>
+      <a-collada-model src="#tree" position="10 0 10"></a-collada-model>
+      <a-collada-model src="#tree" position="-10 0 2"></a-collada-model>
+
+    </a-scene>
+    <script src="bundle.js"></script>
+  </body>
+</html>
