@@ -17,14 +17,14 @@ module.exports = function character() {
 
   var $message = document.createElement('a-box');
   $message.setAttribute('color','white');
-  $message.setAttribute('position', '0 0 20');
+  $message.setAttribute('position', '0 0 16');
   $message.setAttribute('id', 'character');
   $message.setAttribute('scale', '5 5 5');
 
   var $messageAnime = document.createElement('a-animation');
   $messageAnime.setAttribute('attribute', 'position');
   $messageAnime.setAttribute('direction', 'alternate');
-  $messageAnime.setAttribute('to','0 0 22.5');
+  $messageAnime.setAttribute('to','0 0 17');
   $messageAnime.setAttribute('dur', '2000');
   $messageAnime.setAttribute('repeat', 'indefinite');
 

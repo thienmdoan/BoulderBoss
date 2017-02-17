@@ -94,7 +94,7 @@ module.exports = function renderThreeD() {
 
   var $start = document.createElement('a-entity');
   $start.setAttribute('ply-model', `src: #start`);
-  $start.setAttribute('position', '-2.5 7 16');
+  $start.setAttribute('position', '-2.5 10 16');
   $start.setAttribute('rotation', '90 0 90');
   $start.setAttribute('scale', '.5 .5 .5');
   $start.setAttribute('id', 'start');

@@ -4,6 +4,7 @@ const showWeather = require('./components/weatherfunc.js')
 const targets = require('./components/target.js')
 const character = require('./components/character.js')
 
+
 renderThreeD();
 targets();
 character();
@@ -69,18 +70,19 @@ function updateCamera($camera, $dest) {
   $camera.setAttribute('position', dest)
 }
 //EVENT LISTENER FOR CHARACTER INTERACTION
+
 document.body.addEventListener('raycaster-intersected', function () {
   const sceneEl = document.getElementById('scene');
   const charGirl = document.getElementById('girl');
   const gramps = document.getElementById('old');
   const starts = document.getElementById('start');
+  var $message = document.createElement('a-entity');
   if(event.target.id == 'girl'){
-    var $message = document.createElement('a-entity');
     $message.setAttribute('text', `value:
     HELP! My gramps
     is stuck on top
     of the Mountain!; color: white`);
-    $message.setAttribute('position', '37 0 35');
+    $message.setAttribute('position', '37 0 27');
     $message.setAttribute('rotation', '90 0 0');
     $message.setAttribute('align', 'center');
     $message.setAttribute('scale', '100 100 100');
@@ -90,7 +92,6 @@ document.body.addEventListener('raycaster-intersected', function () {
     return charGirl;
   }
   else if(event.target.id == 'old'){
-    var $message = document.createElement('a-entity');
     $message.setAttribute('text', `value:
     HELP! I am trying
     to get away from some
@@ -106,7 +107,6 @@ document.body.addEventListener('raycaster-intersected', function () {
     return gramps;
   }
   else if(event.target.id == 'start'){
-    var $message = document.createElement('a-entity');
     $message.setAttribute('text', `value:
     To start climbing,
     move your cursor over
@@ -128,20 +128,3 @@ document.body.addEventListener('raycaster-intersected-cleared', function () {
     message[0].parentNode.removeChild(message[0]);
   }
 })
-
-//EVENT LISTENER FOR HELP MESSAGE
-/*document.body.addEventListener('click', () => {
-  if(event.target.id === 'character'){
-    var helpMes = prompt('Damsel: HELP! My grandpa is stuck at the top of this huge beautiful mountain! Will you help me?', 'I guess so');
-
-    if(helpMes.toLowerCase() == 'no'){
-      alert('Damsel: You suck');
-    }
-     else if(helpMes.toLowerCase() == 'i guess so'){
-      alert("Damsel: Great! Move your cursor over the blue circles to start! Don't die up there!");
-    }
-    else {
-      alert(`I don't understand`);
-    }
-  }
-}, false);*/
