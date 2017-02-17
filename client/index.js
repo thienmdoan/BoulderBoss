@@ -3,6 +3,7 @@ const renderThreeD = require('./world.js')
 const showWeather = require('./weatherfunc.js')
 const targets = require('./target.js')
 
+
 renderThreeD();
 targets();
 
@@ -83,7 +84,6 @@ function updateCamera($camera, $dest) {
     })
   $camera.setAttribute('position', dest)
 }
-
 
 document.body.addEventListener('raycaster-intersected', function () {
   console.log('Player hit something!');

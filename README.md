@@ -1,2 +1,2 @@
 # BoulderBoss
-App for rock climbers.
+VR app for rock climbers.
