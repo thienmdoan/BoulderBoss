@@ -10,6 +10,8 @@ app.use(express.static('./public'));
 
 const API_KEY = process.env.MY_SECRET;
 console.log(API_KEY);
+const { PORT } = process.env;
+
 const ROOT_URL = `http://api.openweathermap.org/data/2.5/weather?appid=${API_KEY}`
 
 app.get('/weather/:city', (req, res) => {
@@ -24,8 +26,8 @@ app.get('/weather/:city', (req, res) => {
 });
 
 
-app.listen(3000, () => {
-  console.log(`Listening on port ${3000}`);
+app.listen(PORT || 3000, () => {
+  console.log(`Listening on port ${PORT || 3000}`);
 });
 
 module.exports = app;

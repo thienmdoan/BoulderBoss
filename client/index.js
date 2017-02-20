@@ -1,12 +1,14 @@
-const moving = require('./mover.js')
-const renderThreeD = require('./world.js')
-const showWeather = require('./weatherfunc.js')
-const targets = require('./target.js')
+const moving = require('./components/mover.js')
+const renderThreeD = require('./components/world.js')
+const showWeather = require('./components/weatherfunc.js')
+const targets = require('./components/target.js')
+const character = require('./components/character.js')
 
 
 renderThreeD();
 targets();
-
+character();
+//EVENT LISTENER FOR WEATHER FEATURE
 document.body.addEventListener('click', function() {
   event.preventDefault();
   if (event.target.id === 'patagonia') {
@@ -28,22 +30,7 @@ document.body.addEventListener('click', function() {
     }
 }, false);
 
-document.body.addEventListener('click', () => {
-  if(event.target.id === 'character'){
-    var helpMes = prompt('Damsel: HELP! My grandpa is stuck at the top of this huge beautiful mountain! Will you help me?', 'I guess so');
-
-    if(helpMes.toLowerCase() == 'no'){
-      alert('Damsel: You suck');
-    }
-     else if(helpMes.toLowerCase() == 'i guess so'){
-      alert("Damsel: Great! Move your cursor over the blue circles to start! Don't die up there!");
-    }
-    else {
-      alert(`I don't understand`);
-    }
-  }
-}, false);
-
+//EVENT LISTERNING FOR MOVING
 document.body.addEventListener('mousedown', function() {
   const $camera = document.getElementById('camera');
   const cam = $camera.getAttribute('rotation');
@@ -52,14 +39,12 @@ document.body.addEventListener('mousedown', function() {
 }, false)
 
 const element = document.getElementsByClassName('blue');
-
+//EVENT LISTENER FOR CLIMBING
 document.body.addEventListener('click', function(){
   if(event.target.className === 'blue') {
     const $camera = document.getElementById('camera')
     const cam = $camera.getAttribute('position')
     const to = event.target.getAttribute('position')
-//    console.log('camera', cam)
-//    console.log('destination', to)
     updateCamera($camera, event.target);
   }
 });
@@ -84,7 +69,62 @@ function updateCamera($camera, $dest) {
     })
   $camera.setAttribute('position', dest)
 }
+//EVENT LISTENER FOR CHARACTER INTERACTION
 
 document.body.addEventListener('raycaster-intersected', function () {
-  console.log('Player hit something!');
+  const sceneEl = document.getElementById('scene');
+  const charGirl = document.getElementById('girl');
+  const gramps = document.getElementById('old');
+  const starts = document.getElementById('start');
+  var $message = document.createElement('a-entity');
+  if(event.target.id == 'girl'){
+    $message.setAttribute('text', `value:
+    HELP! My gramps
+    is stuck on top
+    of the Mountain!; color: white`);
+    $message.setAttribute('position', '37 0 27');
+    $message.setAttribute('rotation', '90 0 0');
+    $message.setAttribute('align', 'center');
+    $message.setAttribute('scale', '100 100 100');
+    $message.setAttribute('class', 'message');
+
+    charGirl.appendChild($message);
+    return charGirl;
+  }
+  else if(event.target.id == 'old'){
+    $message.setAttribute('text', `value:
+    HELP! I am trying
+    to get away from some
+    crazy girl that thinks
+    I'm her gramps.; color: white`);
+    $message.setAttribute('position', '37 0 35');
+    $message.setAttribute('rotation', '90 0 0');
+    $message.setAttribute('align', 'center');
+    $message.setAttribute('scale', '100 100 100');
+    $message.setAttribute('class', 'message');
+
+    gramps.appendChild($message);
+    return gramps;
+  }
+  else if(event.target.id == 'start'){
+    $message.setAttribute('text', `value:
+    To start climbing,
+    move your cursor over
+    the blue spheres!; color: white`);
+    $message.setAttribute('position', '0 18 -4');
+    $message.setAttribute('rotation', '180 90 -90');
+    $message.setAttribute('align', 'center');
+    $message.setAttribute('scale', '50 50 50');
+    $message.setAttribute('class', 'message');
+
+    starts.appendChild($message);
+    return starts;
+  }
 });
+//REMOVES MESSAGES FROM CHARACTER ONCE CURSOR LEAVES
+document.body.addEventListener('raycaster-intersected-cleared', function () {
+  const message = document.getElementsByClassName('message');
+  while(message.length > 0){
+    message[0].parentNode.removeChild(message[0]);
+  }
+})

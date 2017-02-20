@@ -3,14 +3,19 @@
   "version": "1.0.0",
   "description": "App for rock climbers.",
   "main": "index.js",
+  "engines": {
+  "node": "6.9.2"
+},
   "scripts": {
-    "start": "node",
+    "start": "node index.js",
     "nodemon": "nodemon",
     "dev": "run-p nodemon watch:js watch:html",
+    "bundle":"browserify -t babelify ./client/index.js -o public/bundle.js",
     "watch:js": "watchify -t babelify ./client/index.js -o public/bundle.js",
     "watch:html": "onchange ./client/*.html -- run-s build:html",
     "build:html": "cp ./client/*.html public/",
-    "tdd": "mocha -w -R nyan"
+    "tdd": "mocha -w -R nyan",
+    "postinstall": "npm run bundle"
   },
   "repository": {
     "type": "git",

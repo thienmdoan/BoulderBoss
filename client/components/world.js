@@ -67,18 +67,6 @@ module.exports = function renderThreeD() {
   $welcome.setAttribute('position', '0 -0.05 0');
   $welcome.setAttribute('scale', '.9 .9 .9');
 
-  var $character = document.createElement('a-entity');
-  $character.setAttribute('ply-model', `src: #character`);
-  $character.setAttribute('position', '-7 0 14');
-  $character.setAttribute('rotation', '-90 180 0');
-  $character.setAttribute('scale', '.25 .25 .25');
-
-  var $character2 = document.createElement('a-entity');
-  $character2.setAttribute('ply-model', `src: #character2`);
-  $character2.setAttribute('position', '-5 45.5 40');
-  $character2.setAttribute('rotation', '-90 180 0');
-  $character2.setAttribute('scale', '.25 .25 .25');
-
   var $mountain = document.createElement('a-entity');
   $mountain.setAttribute('ply-model', `src: #mountain`);
   $mountain.setAttribute('position', '-4 0 42');
@@ -104,24 +92,17 @@ module.exports = function renderThreeD() {
   $joshsign.setAttribute('align', 'center');
   $joshsign.setAttribute('scale', '10 10 10');
 
-  var $message = document.createElement('a-box');
-  $message.setAttribute('color','white');
-  $message.setAttribute('position', '0 0 20');
-  $message.setAttribute('id', 'character');
-  $message.setAttribute('scale', '5 5 5');
-
-  var $messageAnime = document.createElement('a-animation');
-  $messageAnime.setAttribute('attribute', 'position');
-  $messageAnime.setAttribute('direction', 'alternate');
-  $messageAnime.setAttribute('to','0 0 22.5');
-  $messageAnime.setAttribute('dur', '2000');
-  $messageAnime.setAttribute('repeat', 'indefinite');
+  var $start = document.createElement('a-entity');
+  $start.setAttribute('ply-model', `src: #start`);
+  $start.setAttribute('position', '-2.5 10 16');
+  $start.setAttribute('rotation', '90 0 90');
+  $start.setAttribute('scale', '.5 .5 .5');
+  $start.setAttribute('id', 'start');
 
   $sceneEl.appendChild($entityEl);
   $sceneEl.appendChild($sky);
-  $sceneEl.appendChild($character);
-  $sceneEl.appendChild($character2);
   $sceneEl.appendChild($mountain);
+  $sceneEl.appendChild($start);
   $sceneEl.appendChild($patasign);
   $sceneEl.appendChild($yosesign);
   $sceneEl.appendChild($joshsign);
@@ -133,8 +114,7 @@ module.exports = function renderThreeD() {
   $entityControl.appendChild($plane1);
   $entityControl.appendChild($plane2);
   $entityControl.appendChild($plane3);
-  $character.appendChild($message);
-  $message.appendChild($messageAnime);
+
 
   return $sceneEl;
   };
