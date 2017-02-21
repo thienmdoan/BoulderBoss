@@ -41,4 +41,7 @@ To start:
 
     5. open on localhost:3000
 
-![image](https://cloud.githubusercontent.com/assets/23460835/23146692/db8dd59e-f78d-11e6-8033-54020d18425d.png)
+
+
+
+![start 3](https://cloud.githubusercontent.com/assets/23460835/23182988/4fdcc22e-f82f-11e6-8b5f-07d37b72f7ef.gif)
