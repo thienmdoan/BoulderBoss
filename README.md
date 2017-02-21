@@ -23,6 +23,10 @@ Three.js
 
 A-frame
 
+Mocha
+
+Chai
+
 To start:
 
     1. git clone "repository".
