@@ -27,6 +27,8 @@ Mocha
 
 Chai
 
+TRAVIS CI
+
 To start:
 
     1. git clone "repository".
